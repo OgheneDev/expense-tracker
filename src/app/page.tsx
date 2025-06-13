@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useTransactions } from '../hooks/useTransactions';
 import { useToast } from '../hooks/useToast';
-import { FilterType, DateRangeType } from '@/types/types';
 import { Header } from '../components/Header';
 import { TransactionForm } from '../components/TransactionForm';
 import { BalanceOverview } from '../components/BalanceOverview';
