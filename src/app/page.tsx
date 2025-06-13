@@ -458,6 +458,15 @@ export default function ExpenseTracker() {
                     <option value="week">This Week</option>
                     <option value="month">This Month</option>
                   </select>
+
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as 'date' | 'amount')}
+                    className="px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="date">Sort by Date</option>
+                    <option value="amount">Sort by Amount</option>
+                  </select>
                 </div>
 
                 {/* Transaction List */}
