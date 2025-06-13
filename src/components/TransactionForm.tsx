@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PlusCircle, Minus, Plus } from 'lucide-react';
+import { TransactionInput } from '@/types/types';
 
 interface TransactionFormProps {
-  onAddTransaction: (transaction: {
-    description: string;
-    amount: number;
-    category: string;
-    type: 'income' | 'expense';
-  }) => void;
+  onAddTransaction: (transaction: TransactionInput & { type: 'income' | 'expense' }) => void;
   onShowToast: (message: string) => void;
 }
 
@@ -29,6 +25,7 @@ export const TransactionForm = ({ onAddTransaction, onShowToast }: TransactionFo
       description,
       amount: transactionType === 'expense' ? -amt : amt,
       category,
+      date: new Date().toISOString(),
       type: transactionType,
     });
 

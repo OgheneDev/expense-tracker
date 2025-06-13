@@ -11,6 +11,7 @@ import { DeleteModal } from '../components/DeleteModal';
 import { Toast } from '../components/Toast';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { Footer } from '@/components/Footer';
+import { TransactionInput } from '../types/types';
 
 export default function ExpenseTracker() {
   const { transactions, loading, addTransaction, deleteTransaction } = useTransactions();
@@ -18,7 +19,7 @@ export default function ExpenseTracker() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toDeleteId, setToDeleteId] = useState<number | null>(null);
 
-  const handleAddTransaction = (transactionData: any) => {
+  const handleAddTransaction = (transactionData: TransactionInput & { type: 'income' | 'expense' }) => {
     addTransaction(transactionData);
   };
 
