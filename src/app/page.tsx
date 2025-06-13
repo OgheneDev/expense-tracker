@@ -16,6 +16,9 @@ interface Transaction {
   type: 'income' | 'expense';
 }
 
+type FilterType = 'all' | 'income' | 'expenses';
+type DateRangeType = 'all' | 'week' | 'month';
+
 export default function ExpenseTracker() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,9 +30,9 @@ export default function ExpenseTracker() {
   const [showToast, setShowToast] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [toDeleteId, setToDeleteId] = useState<number | null>(null);
-  const [filter, setFilter] = useState<'all' | 'income' | 'expenses'>('all');
+  const [filter, setFilter] = useState<FilterType>('all');
   const [sortBy, setSortBy] = useState<'date' | 'amount'>('date');
-  const [dateRange, setDateRange] = useState<'all' | 'week' | 'month'>('all');
+  const [dateRange, setDateRange] = useState<DateRangeType>('all');
 
   // Load transactions from localStorage on component mount
   useEffect(() => {
@@ -438,7 +441,7 @@ export default function ExpenseTracker() {
                       key={filterType}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => setFilter(filterType as any)}
+                      onClick={() => setFilter(filterType as FilterType)}
                       className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                         filter === filterType
                           ? 'bg-blue-600 text-white'
@@ -451,7 +454,7 @@ export default function ExpenseTracker() {
                   
                   <select
                     value={dateRange}
-                    onChange={(e) => setDateRange(e.target.value as any)}
+                    onChange={(e) => setDateRange(e.target.value as DateRangeType)}
                     className="px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="all">All Time</option>
